@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <div class="nav-wrapper">
     <div class="content">
