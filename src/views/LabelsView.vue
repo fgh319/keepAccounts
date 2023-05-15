@@ -1,6 +1,7 @@
 <template>
   <div>
-    <router-view />
+    <h2>Labels.vue</h2>
+    <Nav></Nav>
   </div>
 </template>
 
@@ -14,11 +15,6 @@
   }
 </script>
 
-<style lang="scss">
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+<style lang="scss" scoped>
 
 </style>
