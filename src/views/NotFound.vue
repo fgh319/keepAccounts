@@ -9,11 +9,7 @@
 import { RouterLink } from "vue-router";
 
 export default {
-  data() {
-    return {};
-  },
   components: { RouterLink },
 };
 </script>
 
-<style lang="scss" scoped></style>
