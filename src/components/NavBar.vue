@@ -1,17 +1,17 @@
 <template>
   <nav>
-    <router-link to="/money" class="item">
-      <Icon name="money"></Icon>
+    <router-link to="/money" class="item" active-class="selected">
+      <Icon name="jizhang"></Icon>
       记账
     </router-link>
 
-    <router-link to="/labels" class="item">
-      <Icon name="label"></Icon>
+    <router-link to="/labels" class="item" active-class="selected">
+      <Icon name="biaoqian"></Icon>
       标签
     </router-link>
 
-    <router-link to="/statistics" class="item">
-      <Icon name="statistics"></Icon>
+    <router-link to="/statistics" class="item" active-class="selected">
+      <Icon name="tongji"></Icon>
       统计
     </router-link>
   </nav>
@@ -33,10 +33,14 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  > .icon {
-    width: 28px;
-    height: 28px;
+    > .icon {
+      width: 32px;
+      height: 32px;
+    }
   }
+  > .item.selected {
+    color: red;
+
   }
 }
 </style>

@@ -12,6 +12,9 @@
   }
   a {
     text-decoration: none;
+  }
+  a:visited {
     color: inherit;
   }
+
 </style>
