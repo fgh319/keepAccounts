@@ -25,9 +25,11 @@ export default {};
 @import "@/assets/styles/helper.scss";
 nav {
   display: flex;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  color: #999;
+  box-shadow: 0 0 3px #ccc;
   padding: 5px 0;
   font-size: 14px;
+  font-weight: bold;
   .item {
     width: 33.3333%;
     display: flex;
@@ -41,7 +43,6 @@ nav {
   }
   .item.selected {
     color: $color-highlight;
-
   }
 }
 </style>
