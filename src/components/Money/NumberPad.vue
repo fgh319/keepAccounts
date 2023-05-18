@@ -36,6 +36,7 @@ export default class NumberPad extends Vue {
   ok() {
     console.log("ok");
   }
+
 }
 </script>
 
@@ -46,21 +47,17 @@ export default class NumberPad extends Vue {
       <button @click="inputContent">1</button>
       <button @click="inputContent">2</button>
       <button @click="inputContent">3</button>
-      <button>+</button>
       <button @click="del">删除</button>
       <button @click="inputContent">4</button>
       <button @click="inputContent">5</button>
       <button @click="inputContent">6</button>
-      <button>-</button>
       <button @click="empty">清空</button>
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button>×</button>
       <button @click="ok" class="ok">确定</button>
       <button @click="inputContent" class="num0">0</button>
       <button @click="inputContent">.</button>
-      <button>÷</button>
     </div>
   </div>
 </template>
@@ -78,7 +75,7 @@ export default class NumberPad extends Vue {
 
   .buttons {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     height: 30vh;
 
@@ -88,7 +85,7 @@ export default class NumberPad extends Vue {
     }
 
     .ok {
-      grid-column: 5/6;
+      grid-column: 4/5;
       grid-row: 3/5;
       background: #c4c4c4;
       font-weight: bold;
