@@ -6,7 +6,7 @@ import { Component } from "vue-property-decorator";
 export default class NumberPad extends Vue {
   output = "0";
 
-  inputContent(event: MouseEvent) {
+  inputContent(event: Event) {
     const button = event.target as HTMLButtonElement;
     const input = button.textContent!;
     if (this.output.length >= 16) {
