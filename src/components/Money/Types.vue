@@ -1,14 +1,17 @@
 <script lang="ts">
 import Vue from "vue";
-import {Component} from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
+
 @Component
 export default class Types extends Vue {
-  type = "-"; // '-' 表示支出，'+' 表示收入
-  selectType(type: string) {// 选择支出或收入
-    if (type !== '-' && type !== '+') {
-      throw new Error('type 必须是 - 或 +');
+  @Prop(String) readonly value!: string;
+
+  selectType(type: string) {
+    // 选择支出或收入
+    if (type !== "-" && type !== "+") {
+      throw new Error("type 必须是 - 或 +");
     }
-    this.type = type;
+    this.$emit("update:value", type);
   }
 }
 </script>
@@ -16,8 +19,12 @@ export default class Types extends Vue {
 <template>
   <div>
     <ul class="types">
-      <li @click="selectType('-')" :class="type === '-' && 'selected'">支出</li>
-      <li @click="selectType('+')" :class="type === '+' && 'selected'">收入</li>
+      <li @click="selectType('-')" :class="value === '-' && 'selected'">
+        支出
+      </li>
+      <li @click="selectType('+')" :class="value === '+' && 'selected'">
+        收入
+      </li>
     </ul>
   </div>
 </template>

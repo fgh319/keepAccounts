@@ -20,9 +20,12 @@ export default class NumberPad extends Vue {
       }
       return;
     }
-    if (this.output.indexOf(".") >= 0 && input === ".") {return;}
+    if (this.output.indexOf(".") >= 0 && input === ".") {
+      return;
+    }
     this.output += input;
   }
+
   del() {
     if (this.output.length === 1) {
       this.output = "0";
@@ -30,13 +33,14 @@ export default class NumberPad extends Vue {
       this.output = this.output.slice(0, -1);
     }
   }
+
   empty() {
     this.output = "0";
   }
-  ok() {
-    console.log("ok");
-  }
 
+  ok() {
+      this.$emit("update:value", this.output);
+  }
 }
 </script>
 
