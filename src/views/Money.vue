@@ -11,6 +11,7 @@ type Record = {
   notes: string;
   type: string;
   amount: number;
+  createdAt?: Date;
 };
 
 @Component({
@@ -29,7 +30,7 @@ export default class Money extends Vue {
     type: "-",
     amount: 0,
   };
-  recordList:Record[] = [];
+  recordList:Record[] = JSON.parse(localStorage.getItem('recordList') || '[]') ;
 
   onUpdateTags(value: string[]) {
     this.record.tags = value;
@@ -44,9 +45,9 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    let clone = JSON.parse(JSON.stringify(this.record));
+    let clone:Record = JSON.parse(JSON.stringify(this.record));
+    clone.createdAt = new Date();
     this.recordList.push(clone);
-    console.log(this.recordList);
   }
 
   @Watch('recordList')
@@ -59,7 +60,7 @@ export default class Money extends Vue {
 
 <template>
   <Layout class-prefix="layout">
-    {{ record }}
+    {{recordList}}
     <Tags :data-source.sync="tags" @update:value="onUpdateTags" />
     <Notes @update:value="onUpdateNotes" />
     <Types :value.sync="record.type" />
