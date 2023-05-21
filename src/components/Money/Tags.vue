@@ -4,7 +4,7 @@
 
   @Component
   export default class Tags extends Vue {
-    @Prop(Array) dataSource: string[] | undefined;
+    @Prop(Array) dataSource!: string[];
     selectedTags: string[] = [];
 
     toggle(tag: string) {
@@ -19,9 +19,12 @@
 
     create() {
       const tagName = window.prompt("请输入标签名");
-      if (tagName === '') {
-        window.alert("标签名不能为空");
-      } else if (this.dataSource){
+      if (!tagName) {
+        alert("标签名不能为空");
+      } else if (this.dataSource?.indexOf(tagName) >= 0){
+        alert('标签名已存在')
+        return;
+      } else {
         this.$emit('update:dataSource', [...this.dataSource, tagName]);
       }
     }
@@ -34,7 +37,7 @@
       <li v-for="tag in dataSource" :key="tag" @click="toggle(tag)" :class="{selected: selectedTags.indexOf(tag) >= 0}">{{tag}}</li>
     </ul>
     <div class="new">
-      <button @click="create">新增标签</button>
+      <button @click="create">新建标签</button>
     </div>
   </div>
 </template>

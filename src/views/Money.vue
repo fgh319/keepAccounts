@@ -4,15 +4,9 @@ import Notes from "@/components/Money/Notes.vue";
 import Types from "@/components/Money/Types.vue";
 import NumberPad from "@/components/Money/NumberPad.vue";
 import Vue from "vue";
-import {Component, Watch} from "vue-property-decorator";
-
-type Record = {
-  tags: string[];
-  notes: string;
-  type: string;
-  amount: number;
-  createdAt?: Date;
-};
+import { Component, Watch } from "vue-property-decorator";
+import { recordListModel } from "@/models/recordListModel";
+import { tagListModel } from "@/models/tagListModel";
 
 @Component({
   components: {
@@ -23,14 +17,20 @@ type Record = {
   },
 })
 export default class Money extends Vue {
-  tags = ["衣", "食", "住", "行", "娱乐", "其他"];
-  record: Record = {
+  recordList = recordListModel.fetch();
+  tags = tagListModel.fetch();
+  record:{
+    tags: string[];
+    notes: string;
+    type: string;
+    amount: number;
+    createdAt?: Date;
+  } = {
     tags: [],
     notes: "",
     type: "-",
     amount: 0,
   };
-  recordList:Record[] = JSON.parse(localStorage.getItem('recordList') || '[]') ;
 
   onUpdateTags(value: string[]) {
     this.record.tags = value;
@@ -45,26 +45,30 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    let clone:Record = JSON.parse(JSON.stringify(this.record));
+    let clone = recordListModel.clone(this.record);
     clone.createdAt = new Date();
     this.recordList.push(clone);
   }
 
-  @Watch('recordList')
+
+  @Watch("recordList")
   onRecordChange() {
-    localStorage.setItem('recordList', JSON.stringify(this.recordList));
+    recordListModel.save(this.recordList);
   }
 
+  @Watch('tags')
+  onTagsChange() {
+    tagListModel.save(this.tags);
+  }
 }
 </script>
 
 <template>
   <Layout class-prefix="layout">
-    {{recordList}}
     <Tags :data-source.sync="tags" @update:value="onUpdateTags" />
     <Notes @update:value="onUpdateNotes" />
     <Types :value.sync="record.type" />
-    <NumberPad @update:value="onUpdateAmount" @submit="saveRecord" />
+    <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"  />
   </Layout>
 </template>
 
