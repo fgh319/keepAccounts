@@ -2,6 +2,7 @@
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
   import {tagListModel} from "@/models/tagListModel";
+  import {createId} from "@/lib/createId";
 
 
   @Component
@@ -10,6 +11,7 @@
     tagValues = this.tags.map(item => item.value)
 
     createTag() {
+      const id = createId().toString();
       const tagName = window.prompt('请输入标签名：');
       if(!tagName) {
         alert('标签名不能为空2')
@@ -17,7 +19,7 @@
         alert('标签名已存在')
         return;
       } else {
-        tagListModel.pushTag({id: tagName, value: tagName});
+        tagListModel.pushTag({id, value: tagName});
       }
     }
   }
