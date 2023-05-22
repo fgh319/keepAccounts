@@ -25,13 +25,12 @@
 
 <template>
   <Layout>
-    <ol class="tags">
-      <li  v-for="tag in tags" :key="tag.id">
+    <div class="tags">
+      <router-link class="tag" v-for="tag in tags" :key="tag.id" :to="`/labels/edit/${tag.id}`">
         <span>{{tag.value}}</span>
         <Icon name="right"></Icon>
-      </li>
-
-    </ol>
+      </router-link>
+    </div>
     <div class="newTag-wrapper">
       <button class="newTag" @click="createTag">新建标签</button>
     </div>
@@ -43,16 +42,16 @@
   background: white;
   padding: 0 16px;
   list-style: none;
-  li {
+  .tag {
     min-height: 44px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 4px ;
     svg {
-      height: 1.2em;
-      width: 1.2em;
+      height: 1.3em;
+      width: 1.3em;
       color: #666;
     }
   }

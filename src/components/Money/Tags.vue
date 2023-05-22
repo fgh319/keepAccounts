@@ -51,7 +51,7 @@
   flex-direction: column;
   flex-grow: 1;
   overflow: auto;
-
+  background: white;
   .current {
     display: flex;
     flex-wrap: wrap;
