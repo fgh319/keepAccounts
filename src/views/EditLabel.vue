@@ -5,12 +5,13 @@
 
   @Component
   export default class EditLabel extends Vue {
+    tag?:Tag = undefined;
     created() {
       const id = this.$route.params.id;
       const tags = tagListModel.fetch();
       const tag = tags.filter(t => t.id === id)[0];
       if (tag) {
-        console.log(tag);
+        this.tag = tag;
       } else {
         this.$router.replace('/404')
       }
@@ -27,7 +28,7 @@
     <div class="name">
       <label>
         <span>标签名</span>
-        <input type="text" placeholder="请输入标签名">
+        <input type="text" placeholder="请输入标签名" :value="tag.value" >
       </label>
     </div>
     <div class="delTag-wrapper">
