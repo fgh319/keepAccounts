@@ -7,16 +7,17 @@
   @Component
   export default class Label extends Vue {
     tags = tagListModel.fetch();
+    tagValues = this.tags.map(item => item.value)
 
     createTag() {
       const tagName = window.prompt('请输入标签名：');
       if(!tagName) {
         alert('标签名不能为空2')
-      } else if(this.tags.indexOf(tagName) >= 0 ){
+      } else if(this.tagValues.indexOf(tagName) >= 0 ){
         alert('标签名已存在')
         return;
       } else {
-        tagListModel.pushTag(tagName);
+        tagListModel.pushTag({id: tagName, value: tagName});
       }
     }
   }
@@ -25,8 +26,8 @@
 <template>
   <Layout>
     <ol class="tags">
-      <li  v-for="tag in tags" :key="tag">
-        <span>{{tag}}</span>
+      <li  v-for="tag in tags" :key="tag.id">
+        <span>{{tag.value}}</span>
         <Icon name="right"></Icon>
       </li>
 

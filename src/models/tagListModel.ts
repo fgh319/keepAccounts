@@ -1,6 +1,6 @@
 const localStorageKeyName = 'tagList';
 
-export const tagListModel:{tags: string[], fetch():string[],pushTag(data:string):void,save(data:string[]):void} = {
+export const tagListModel:{tags: Tag[], fetch():Tag[],pushTag(data:Tag):void,save(data:Tag[]):void} = {
   tags: [],
   fetch() {
     this.tags = JSON.parse(localStorage.getItem(localStorageKeyName) || '[]') ;

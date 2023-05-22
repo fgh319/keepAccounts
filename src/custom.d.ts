@@ -12,4 +12,7 @@ type RecordItem = {
   createdAt?: Date;
 };
 
-
+type Tag = {
+  id:string;
+  value:string;
+}

@@ -4,9 +4,8 @@ import Notes from "@/components/Money/Notes.vue";
 import Types from "@/components/Money/Types.vue";
 import NumberPad from "@/components/Money/NumberPad.vue";
 import Vue from "vue";
-import { Component, Watch } from "vue-property-decorator";
+import { Component, Watch} from "vue-property-decorator";
 import { recordListModel } from "@/models/recordListModel";
-import { tagListModel } from "@/models/tagListModel";
 
 @Component({
   components: {
@@ -18,7 +17,8 @@ import { tagListModel } from "@/models/tagListModel";
 })
 export default class Money extends Vue {
   recordList = recordListModel.fetch();
-  tags = tagListModel.fetch();
+  // tags = tagListModel.fetch();
+
   record:{
     tags: string[];
     notes: string;
@@ -55,17 +55,12 @@ export default class Money extends Vue {
   onRecordChange() {
     recordListModel.save(this.recordList);
   }
-
-  @Watch('tags')
-  onTagsChange() {
-    tagListModel.save(this.tags);
-  }
 }
 </script>
 
 <template>
   <Layout class-prefix="layout">
-    <Tags :data-source.sync="tags" @update:value="onUpdateTags" />
+    <Tags  @update:value="onUpdateTags" />
     <Notes @update:value="onUpdateNotes" />
     <Types :value.sync="record.type" />
     <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"  />
