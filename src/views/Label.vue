@@ -40,7 +40,6 @@
 <style lang="scss" scoped>
 .tags {
   background: white;
-  padding: 0 16px;
   list-style: none;
   .tag {
     min-height: 44px;
@@ -48,7 +47,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4px ;
+    padding: 0 12px ;
     svg {
       height: 1.3em;
       width: 1.3em;

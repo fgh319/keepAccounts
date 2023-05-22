@@ -54,10 +54,10 @@
     }
   }
   .name {
-    padding: 16px;
+    padding: 12px;
     font-size: 14px;
-    border: 1px solid #ddd;
-
+    background: white;
+    margin-top: 6px;
     span {
       margin-right: 12px;
     }
