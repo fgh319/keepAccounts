@@ -5,7 +5,6 @@ const localStorageKeyName = "tagList";
 export const tagListModel: {
   tags: Tag[];
   fetch(): Tag[];
-  pushTag(data: Tag): void;
   save(data: Tag[]): void;
   remove(data:Tag):void;
   create() : void;
@@ -15,10 +14,10 @@ export const tagListModel: {
     this.tags = JSON.parse(localStorage.getItem(localStorageKeyName) || "[]");
     return this.tags;
   },
-  pushTag(data) {
-    this.tags.push(data);
-    localStorage.setItem(localStorageKeyName, JSON.stringify(this.tags));
-  },
+  // pushTag(data) {
+  //   this.tags.push(data);
+  //   localStorage.setItem(localStorageKeyName, JSON.stringify(this.tags));
+  // },
   save(data) {
     localStorage.setItem(localStorageKeyName, JSON.stringify(data));
   },
@@ -35,7 +34,8 @@ export const tagListModel: {
       alert('标签名已存在')
       return;
     } else {
-      tagListModel.pushTag({id, value: tagName});
+      this.tags.push({id:id, value: tagName});
+      localStorage.setItem(localStorageKeyName, JSON.stringify(this.tags));
     }
   }
 };

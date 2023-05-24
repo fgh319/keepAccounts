@@ -13,10 +13,11 @@ type RecordItem = {
 };
 
 type Tag = {
-  id:string;
-  value:string;
-}
+  id: string;
+  value: string;
+};
 
 interface Window {
-  tagList:Tag[]
+  tagList: Tag[];
+  createTag: () => void;
 }

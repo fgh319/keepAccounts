@@ -16,6 +16,8 @@ Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
 
 window.tagList = tagListModel.fetch();
+window.createTag = tagListModel.create;
+
 
 new Vue({
   router,
