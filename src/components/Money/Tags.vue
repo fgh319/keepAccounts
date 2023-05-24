@@ -2,12 +2,10 @@
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
   import {tagListModel} from "@/models/tagListModel";
-  import {createId} from "@/lib/createId";
 
   @Component
   export default class Tags extends Vue {
-    tags = tagListModel.fetch()
-    tagValues = this.tags.map(item => item.value)
+    tags = window.tagList;
     selectedTags: string[] = [];
 
     toggle(tagValue: string) {
@@ -21,16 +19,7 @@
     }
 
     createTag() {
-      const id = createId().toString();
-      const tagName = window.prompt("请输入标签名");
-      if (!tagName) {
-        alert("标签名不能为空");
-      } else if (this.tagValues.indexOf(tagName) >= 0){
-        alert('标签名已存在')
-        return;
-      } else {
-        tagListModel.pushTag({id, value: tagName});
-      }
+      tagListModel.create();
     }
   }
 </script>
