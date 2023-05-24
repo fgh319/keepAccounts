@@ -1,10 +1,11 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import {store} from "@/store/index2";
 
 @Component
 export default class EditLabel extends Vue {
-  tags = window.tagList;
+  tags = store.tagList;
   tag:Tag = {
     id: '0',
     value: '0',
@@ -22,13 +23,13 @@ export default class EditLabel extends Vue {
 
   onValueChange() {
     console.log(this.tags);
-    window.updateTag(this.tags);
+    store.updateTag(this.tags);
   }
 
   remove() {
     if (window.confirm("确定删除吗？")) {
-      window.removeTag(this.tag);
-      window.updateTag(this.tags);
+      store.removeTag(this.tag);
+      store.updateTag(this.tags);
       this.$router.replace('/labels')
     }
   }

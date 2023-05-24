@@ -18,10 +18,13 @@ type Tag = {
 };
 
 interface Window {
-  recordList: RecordItem[];
-  createRecord: (record:RecordItem) => void;
-  tagList: Tag[];
-  createTag: (tags: Tag[]) => void;
-  removeTag: (tag:Tag) => void;
-  updateTag: (tags: Tag[]) => void;
+  store: {
+    recordList: RecordItem[];
+    createRecord: (record:RecordItem) => void;
+    tagList: Tag[];
+    createTag: (tags: Tag[]) => void;
+    removeTag: (tag:Tag) => void;
+    updateTag: (tags: Tag[]) => void;
+  }
+
 }
