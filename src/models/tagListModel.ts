@@ -5,7 +5,7 @@ const localStorageKeyName = "tagList";
 export const tagListModel: {
   tags: Tag[];
   fetch(): Tag[];
-  save(data: Tag[]): void;
+  update(data: Tag[]): void;
   remove(data:Tag):void;
   create() : void;
 } = {
@@ -18,7 +18,7 @@ export const tagListModel: {
   //   this.tags.push(data);
   //   localStorage.setItem(localStorageKeyName, JSON.stringify(this.tags));
   // },
-  save(data) {
+  update(data) {
     localStorage.setItem(localStorageKeyName, JSON.stringify(data));
   },
   remove(data) {

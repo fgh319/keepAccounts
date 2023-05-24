@@ -1,11 +1,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import { tagListModel } from "@/models/tagListModel";
 
 @Component
 export default class EditLabel extends Vue {
-  tags = tagListModel.fetch();
+  tags = window.tagList;
   tag:Tag = {
     id: '0',
     value: '0',
@@ -23,13 +22,13 @@ export default class EditLabel extends Vue {
 
   onValueChange() {
     console.log(this.tags);
-    tagListModel.save(this.tags);
+    window.updateTag(this.tags);
   }
 
   remove() {
     if (window.confirm("确定删除吗？")) {
-      tagListModel.remove(this.tag);
-      tagListModel.save(this.tags);
+      window.removeTag(this.tag);
+      window.updateTag(this.tags);
       this.$router.replace('/labels')
     }
   }

@@ -1,14 +1,13 @@
 <script lang="ts">
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
-  import {tagListModel} from "@/models/tagListModel";
 
   @Component
   export default class Label extends Vue {
     tags = window.tagList;
 
     createTag() {
-      tagListModel.create();
+      window.createTag();
     }
   }
 </script>

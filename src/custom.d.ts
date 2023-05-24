@@ -20,4 +20,6 @@ type Tag = {
 interface Window {
   tagList: Tag[];
   createTag: () => void;
+  removeTag: (tag:Tag) => void;
+  updateTag: (tags: Tag[]) => void;
 }

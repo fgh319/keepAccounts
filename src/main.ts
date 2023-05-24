@@ -17,6 +17,12 @@ Vue.component('Icon', Icon);
 
 window.tagList = tagListModel.fetch();
 window.createTag = tagListModel.create;
+window.removeTag = (tag:Tag) => {
+    tagListModel.remove(tag);
+  };
+window.updateTag = (tags: Tag[]) => {
+  tagListModel.update(tags)
+}
 
 
 new Vue({
