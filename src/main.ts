@@ -16,10 +16,21 @@ Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
 
 window.tagList = tagListModel.fetch();
-window.createTag = tagListModel.create;
-window.removeTag = (tag:Tag) => {
-    tagListModel.remove(tag);
-  };
+window.createTag = (tags) => {
+  const tagValues = tags.map(item => item.value)
+  const tagName = window.prompt('请输入标签名：');
+  if(!tagName) {
+    alert('标签名不能为空2')
+  } else if(tagValues.indexOf(tagName) >= 0 ){
+    alert('标签名已存在')
+    return;
+  } else {
+    tagListModel.create(tagName);
+  }
+}
+window.removeTag = (tag: Tag) => {
+  tagListModel.remove(tag);
+};
 window.updateTag = (tags: Tag[]) => {
   tagListModel.update(tags)
 }

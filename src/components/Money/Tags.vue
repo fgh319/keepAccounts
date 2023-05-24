@@ -18,7 +18,7 @@
     }
 
     createTag() {
-      window.createTag();
+      window.createTag(this.tags);
     }
   }
 </script>
