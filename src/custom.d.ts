@@ -18,6 +18,8 @@ type Tag = {
 };
 
 interface Window {
+  recordList: RecordItem[];
+  createRecord: (record:RecordItem) => void;
   tagList: Tag[];
   createTag: (tags: Tag[]) => void;
   removeTag: (tag:Tag) => void;
