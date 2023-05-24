@@ -5,10 +5,10 @@
 
   @Component
   export default class Label extends Vue {
-    tags = store.tagList;
+    tags = store.fetchTags();
 
     createTag() {
-      store.createTag(this.tags);
+      store.createTag();
     }
   }
 </script>

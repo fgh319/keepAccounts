@@ -5,7 +5,7 @@
 
   @Component
   export default class Tags extends Vue {
-    tags = store.tagList;
+    tags = store.fetchTags();
     selectedTags: string[] = [];
 
     toggle(tagValue: string) {
@@ -19,7 +19,7 @@
     }
 
     createTag() {
-      store.createTag(this.tags);
+      store.createTag();
     }
   }
 </script>
