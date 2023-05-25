@@ -1,14 +1,20 @@
 <script lang="ts">
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
-  import {store} from "@/store/index2";
+  import store from "@/store/index";
 
   @Component
   export default class Label extends Vue {
-    tags = store.fetchTags();
+    get tags() {
+      return store.state.tagList;
+    }
+
+    created() {
+      store.commit('fetchTags')
+    }
 
     createTag() {
-      store.createTag();
+      store.commit('createTag');
     }
   }
 </script>

@@ -1,17 +1,20 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import {store} from "@/store/index2";
+import store from "@/store/index";
 
 @Component
 export default class EditLabel extends Vue {
-  tags = store.tagList;
-  tag:Tag = {
+  get tags() {
+    return store.state.tagList;
+  }
+  tag = {
     id: '0',
     value: '0',
   };
 
   created() {
+    store.commit('fetchTags');
     const id = this.$route.params.id;
     const tag = this.tags.filter((t) => t.id === id)[0];
     if (tag) {
@@ -22,15 +25,16 @@ export default class EditLabel extends Vue {
   }
 
   onValueChange() {
-    console.log(this.tags);
-    store.updateTag(this.tags);
+    store.commit('updateTag', this.tags);
   }
 
   remove() {
     if (window.confirm("确定删除吗？")) {
-      store.removeTag(this.tag);
-      store.updateTag(this.tags);
-      this.$router.replace('/labels')
+      store.commit('removeTag', this.tag);
+      store.commit('updateTag', this.tags);
+      this.$router.replace('/labels');
+    } else {
+      return;
     }
   }
   back() {
