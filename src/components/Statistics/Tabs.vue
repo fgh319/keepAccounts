@@ -24,15 +24,22 @@
 .tabs {
   display: flex;
   font-size: 20px;
-  background: white;
+  background: #c4c4c4;
   li {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     height: 48px;
-    &.selected {
-      background: #c4c4c4;
+    position: relative;
+    &.selected::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #333;
     }
   }
 }
