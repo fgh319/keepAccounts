@@ -21,7 +21,7 @@ export default class Money extends Vue {
     notes: string;
     type: string;
     amount: number;
-    createdAt?: Date;
+    createdAt?: string;
   } = {
     tags: [],
     notes: "",

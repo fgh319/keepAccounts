@@ -6,11 +6,9 @@ import { Component, Prop } from "vue-property-decorator";
 export default class Types extends Vue {
   @Prop(String) readonly value!: string;
 
+
   selectType(type: string) {
     // 选择支出或收入
-    if (type !== "-" && type !== "+") {
-      throw new Error("type 必须是 - 或 +");
-    }
     this.$emit("update:value", type);
   }
 }
