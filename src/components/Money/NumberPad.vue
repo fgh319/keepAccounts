@@ -50,22 +50,22 @@ export default class NumberPad extends Vue {
 <template>
   <div class="numberPad">
     <div class="output">{{ output }}</div>
-    <div class="buttons">
-      <button @click="inputContent">1</button>
-      <button @click="inputContent">2</button>
-      <button @click="inputContent">3</button>
-      <button @click="del">删除</button>
-      <button @click="inputContent">4</button>
-      <button @click="inputContent">5</button>
-      <button @click="inputContent">6</button>
-      <button @click="empty">清空</button>
-      <button @click="inputContent">7</button>
-      <button @click="inputContent">8</button>
-      <button @click="inputContent">9</button>
-      <button @click="ok" class="ok">确定</button>
-      <button @click="inputContent" class="num0">0</button>
-      <button @click="inputContent">.</button>
-    </div>
+    <ul class="buttons">
+      <li @click="inputContent">1</li>
+      <li @click="inputContent">2</li>
+      <li @click="inputContent">3</li>
+      <li @click="del">删除</li>
+      <li @click="inputContent">4</li>
+      <li @click="inputContent">5</li>
+      <li @click="inputContent">6</li>
+      <li @click="empty">清空</li>
+      <li @click="inputContent">7</li>
+      <li @click="inputContent">8</li>
+      <li @click="inputContent">9</li>
+      <li @click="ok" class="ok">确定</li>
+      <li @click="inputContent" class="num0">0</li>
+      <li @click="inputContent">.</li>
+    </ul>
   </div>
 </template>
 
@@ -86,9 +86,13 @@ export default class NumberPad extends Vue {
     grid-template-rows: repeat(4, 1fr);
     height: 30vh;
 
-    button {
-      border: none;
-      outline: 1px solid #ccc;
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #eee;
+      border: 0.5px #ccc solid;
+      border-collapse: collapse;
     }
 
     .ok {
