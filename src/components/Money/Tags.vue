@@ -56,10 +56,10 @@
 
     li {
       background: #d9d9d9;
-      height: 26px;
-      line-height: 26px;
+      //height: 26px;
+      line-height: 32px;
       border-radius: 4px;
-      padding: 0 14px;
+      padding: 0 16px;
       margin-top: 6px;
       margin-right: 8px;
       &.selected {

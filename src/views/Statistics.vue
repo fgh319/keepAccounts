@@ -69,7 +69,7 @@ export default class Statistics extends Vue {
 <!--    <TimeTabs :time.sync="time"></TimeTabs>-->
     <ol class="data">
       <li v-for="(group, index) in groupedList" class="group" :key="index">
-        <h4 class="title">{{ beautify(group.title) }}<span>￥{{group.total}}</span></h4>
+        <h3 class="title">{{ beautify(group.title) }}<span>￥{{group.total}}</span></h3>
         <ol class="records">
           <li v-for="(record, index) in group.records" :key="index">
             <span>{{tagString(record.tags)}}</span>
@@ -85,7 +85,7 @@ export default class Statistics extends Vue {
 
 <style scoped lang="scss">
   .title {
-    padding: 0 8px;
+    padding: 4px 8px;
     line-height: 2em;
     display: flex;
     justify-content: space-between;
@@ -94,7 +94,7 @@ export default class Statistics extends Vue {
   .records {
     background: white;
     > li {
-      padding: 0 8px;
+      padding: 4px 8px;
       line-height: 2em;
       border-bottom: 1px solid #eee;
       display: flex;

@@ -25,7 +25,6 @@ import {Component, Watch,} from "vue-property-decorator";
 
 <style scoped lang="scss">
 .notes {
-  font-size: 14px;
   padding-left: 16px;
   display: flex;
   align-items: center;
@@ -40,6 +39,8 @@ import {Component, Watch,} from "vue-property-decorator";
     background: transparent;
     border: none;
     padding-right: 16px;
+    font-size: 14px;
+
   }
 }
 </style>

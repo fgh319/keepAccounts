@@ -39,7 +39,7 @@
   list-style: none;
   .tag {
     min-height: 44px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
     display: flex;
     align-items: center;
     justify-content: space-between;

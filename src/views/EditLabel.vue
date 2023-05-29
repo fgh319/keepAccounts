@@ -81,6 +81,10 @@ export default class EditLabel extends Vue {
     left: 8px;
   }
 
+  .title {
+    font-weight: bold;
+  }
+
   svg {
     height: 1.3em;
     width: 1.3em;
@@ -90,7 +94,6 @@ export default class EditLabel extends Vue {
 
 .name {
   padding: 12px;
-  font-size: 14px;
   background: white;
   margin-top: 6px;
 
@@ -101,6 +104,7 @@ export default class EditLabel extends Vue {
   input {
     border: none;
     background: transparent;
+   font-size: 16px;
   }
 }
 
