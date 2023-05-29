@@ -20,6 +20,7 @@ const store = new Vuex.Store({
       record2.createdAt = new Date().toISOString();
       state.recordList?.push(record2);
       localStorage.setItem('recordList', JSON.stringify(state.recordList));
+      window.alert('已保存');
     },
 
     fetchTags(state) {
@@ -29,7 +30,7 @@ const store = new Vuex.Store({
       const tagValues = state.tagList.map((item:Tag) => item.value);
       const value = window.prompt("请输入标签名：");
       if (!value) {
-        alert("标签名不能为空2");
+        alert("标签名不能为空");
       } else if (tagValues.indexOf(value) >= 0) {
         alert("标签名已存在");
         return;
