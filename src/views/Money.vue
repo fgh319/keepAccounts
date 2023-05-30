@@ -37,16 +37,13 @@ export default class Money extends Vue {
     this.record.tags = value;
   }
 
-  onUpdateNotes(value: string) {
-    this.record.notes = value;
-  }
-
   onUpdateAmount(value: string) {
     if (parseFloat(value) === 0) {
       window.alert('请输入金额');
     } else {
       this.record.amount = parseFloat(value);
       store.commit('createRecord', this.record)
+      this.record.notes = '';
     }
 
   }
@@ -57,7 +54,7 @@ export default class Money extends Vue {
 <template>
   <Layout class-prefix="layout">
     <Tags  @update:value="onUpdateTags" />
-    <Notes @update:value="onUpdateNotes" />
+    <Notes :value.sync="record.notes" />
     <Types :value.sync="record.type" />
     <NumberPad @update:value="onUpdateAmount"  />
   </Layout>

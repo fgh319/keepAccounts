@@ -3,15 +3,13 @@ import { Vue } from "vue-property-decorator";
 import { Component } from "vue-property-decorator";
 import store from "@/store";
 import Tabs from "@/components/Statistics/Tabs.vue";
-import TimeTabs from "@/components/Statistics/TimeTabs.vue";
 import dayjs from "dayjs";
 
 @Component({
-  components: { TimeTabs, Tabs },
+  components: {Tabs },
 })
 export default class Statistics extends Vue {
   type = "-";
-  time = "day";
 
   created() {
     store.commit("fetchRecords");
@@ -24,7 +22,9 @@ export default class Statistics extends Vue {
   get groupedList() {
     if (this.recordList.length === 0) return [];
     const clone = JSON.parse(JSON.stringify(this.recordList));
-    const newList = clone.filter((r:RecordItem) => r.type === this.type).sort((a:RecordItem, b:RecordItem) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
+    const inOut = clone.filter((r:RecordItem) => r.type === this.type);
+    if (inOut.length === 0) return [];
+    const newList = inOut.sort((a:RecordItem, b:RecordItem) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
     const result:{title: string, records: RecordItem[], total?: number}[] = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'), records: [newList[0]]}];
     for (let i = 1; i < newList.length; i++) {
       const current = newList[i];
@@ -42,7 +42,7 @@ export default class Statistics extends Vue {
   }
 
   tagString(tags: string[]) {
-    return tags.length === 0 ? '无' : tags.join(',');
+    return tags.length === 0 ? '无标签' : tags.join('，');
   }
 
   beautify(title: string) {
@@ -66,8 +66,7 @@ export default class Statistics extends Vue {
 <template>
   <Layout>
     <Tabs :type.sync="type"></Tabs>
-<!--    <TimeTabs :time.sync="time"></TimeTabs>-->
-    <ol class="data">
+    <ol v-if="groupedList.length > 0" class="data">
       <li v-for="(group, index) in groupedList" class="group" :key="index">
         <h3 class="title">{{ beautify(group.title) }}<span>￥{{group.total}}</span></h3>
         <ol class="records">
@@ -79,7 +78,9 @@ export default class Statistics extends Vue {
         </ol>
       </li>
     </ol>
-
+    <div v-else class="nodata">
+      目前没有相关记录
+    </div>
   </Layout>
 </template>
 
@@ -107,5 +108,10 @@ export default class Statistics extends Vue {
         margin-left: 6px;
       }
     }
+  }
+
+  .nodata {
+    text-align: center;
+    padding:26px;
   }
 </style>
