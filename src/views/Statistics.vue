@@ -5,8 +5,28 @@ import store from "@/store";
 import Tabs from "@/components/Statistics/Tabs.vue";
 import dayjs from "dayjs";
 
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { LineChart } from "echarts/charts";
+import {
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+    GridComponent
+} from "echarts/components";
+import VChart, { THEME_KEY } from "vue-echarts";
+
+use([
+  CanvasRenderer,
+  LineChart,
+  GridComponent,
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent
+]);
+
 @Component({
-  components: {Tabs },
+  components: {Tabs, VChart },
 })
 export default class Statistics extends Vue {
   type = "-";
@@ -60,12 +80,54 @@ export default class Statistics extends Vue {
       return date.format('YYYY年M月D日')
     }
   }
+
+  option = {
+    tooltip: {
+      show: true,
+      position: 'top',
+      formatter: '￥{c}',
+    },
+    grid: {
+      left: 0,
+      right: 0,
+      top: 30,
+      bottom: 30,
+    },
+    xAxis: {
+      axisTick: {
+        alignWithLabel: true,
+      },
+      type: 'category',
+      data: ['1','2','3','4','5','6','7','1','2','3','4','5','6','7','1','2','3','4','5','6','7']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: [150, 230, 224, 218, 135, 147, 260,150, 230, 224, 218, 135, 147, 260,150, 230, 224, 218, 135, 147, 260],
+        type: 'line',
+        symbolSize: 10,
+        itemStyle: {
+          color: '#41b883',
+        }
+      },
+    ]
+  }
+
+  mounted() {
+    const chartWrapper = document.querySelector('.chart-wrapper') as HTMLElement;
+    chartWrapper.scrollLeft = chartWrapper.scrollWidth;
+  }
 }
 </script>
 
 <template>
   <Layout>
     <Tabs :type.sync="type"></Tabs>
+    <div class="chart-wrapper">
+      <v-chart class="chart" :option="option" />
+    </div>
     <ol v-if="groupedList.length > 0" class="data">
       <li v-for="(group, index) in groupedList" class="group" :key="index">
         <h3 class="title">{{ beautify(group.title) }}<span>￥{{group.total}}</span></h3>
@@ -113,5 +175,13 @@ export default class Statistics extends Vue {
   .nodata {
     text-align: center;
     padding:26px;
+  }
+
+  .chart {
+    height: 200px;
+    width: 430%;
+    &-wrapper {
+      overflow: auto;
+  }
   }
 </style>

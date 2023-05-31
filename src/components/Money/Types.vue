@@ -28,6 +28,8 @@ export default class Types extends Vue {
 </template>
 
 <style scoped lang="scss">
+@import "@/assets/styles/helper.scss";
+
 .types {
   background: #c4c4c4;
   display: flex;
@@ -49,7 +51,7 @@ export default class Types extends Vue {
       left: 0;
       width: 100%;
       height: 4px;
-      background: #333;
+      background: $color-highlight;
     }
   }
 }

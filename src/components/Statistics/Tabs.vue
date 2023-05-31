@@ -21,6 +21,8 @@
 </template>
 
 <style scoped lang="scss">
+@import "@/assets/styles/helper.scss";
+
 .tabs {
   display: flex;
   font-size: 20px;
@@ -39,7 +41,7 @@
       left: 0;
       width: 100%;
       height: 4px;
-      background: #333;
+      background: $color-highlight;
     }
   }
 }
