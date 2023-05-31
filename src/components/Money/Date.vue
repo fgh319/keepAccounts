@@ -1,25 +1,33 @@
 <script lang="ts">
 import Vue from "vue";
-import {Component, Prop} from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
+import dayjs from "dayjs";
 
-  @Component
-  export default class Notes extends Vue {
-    @Prop(String) value!: string;
-
+@Component({
+  computed: {
+    dayjs() {
+      return dayjs
+    }
   }
+})
+export default class Date extends Vue {
+  @Prop(String) value!: string;
+
+
+}
 </script>
 
 <template>
   <div>
-    <label class="notes">
-      <span class="name">备注</span>
-      <input @change="$emit('update:value', $event.target.value)" :value="value" type="text" placeholder="在这里添加备注" />
+    <label class="date">
+      <span class="name">日期</span>
+      <input @change="$emit('update:value', $event.target.value)" type="date" :value="value" />
     </label>
   </div>
 </template>
 
 <style scoped lang="scss">
-.notes {
+.date {
   padding-left: 16px;
   display: flex;
   align-items: center;
@@ -35,7 +43,6 @@ import {Component, Prop} from "vue-property-decorator";
     border: none;
     padding-right: 16px;
     font-size: 14px;
-
   }
 }
 </style>
