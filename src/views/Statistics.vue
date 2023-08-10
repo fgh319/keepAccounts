@@ -14,7 +14,7 @@ import {
   LegendComponent,
     GridComponent
 } from "echarts/components";
-import VChart, { THEME_KEY } from "vue-echarts";
+import VChart from "vue-echarts";
 
 use([
   CanvasRenderer,

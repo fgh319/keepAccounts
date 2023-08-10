@@ -75,7 +75,7 @@ export default class EditLabel extends Vue {
   justify-content: center;
   background: white;
   padding: 12px;
-
+  position: relative;
   .leftIcon {
     position: absolute;
     left: 8px;
